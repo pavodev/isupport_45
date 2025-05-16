@@ -19,6 +19,8 @@ import { CoreSharedModule } from '@/core/shared.module';
 import { CoreBlockComponentsModule } from '@features/block/components/components.module';
 import { CoreCoursesDashboardPage } from '@features/courses/pages/dashboard/dashboard';
 
+import { AddonBlockSurveyComponentsModule } from '@addons/block/survey/components/components.module';
+
 const routes: Routes = [
     {
         path: '',
@@ -31,6 +33,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         CoreSharedModule,
         CoreBlockComponentsModule,
+        AddonBlockSurveyComponentsModule,
     ],
     declarations: [
         CoreCoursesDashboardPage,

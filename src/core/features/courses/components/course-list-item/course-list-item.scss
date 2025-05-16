@@ -1,4 +1,4 @@
-@use "theme/globals" as *;
+@use 'theme/globals' as *;
 
 :host {
     @for $i from 0 to length($core-course-image-background) {
@@ -27,7 +27,6 @@
         --avatar-margin: 12px;
     }
 }
-
 
 :host-context(:root.dark) {
     --button-background: rgb(0 0 0 / 30%);
@@ -80,7 +79,8 @@ ion-card {
     }
 }
 
-.core-course-enrol-icons, .core-icon-downloaded {
+.core-course-enrol-icons,
+.core-icon-downloaded {
     @include margin-horizontal(4px, 0px);
 }
 
@@ -101,7 +101,6 @@ ion-chip {
     }
 }
 
-
 // List layout.
 ion-card.core-course-list-item {
     max-width: var(--list-item-max-width);
@@ -116,7 +115,7 @@ ion-card.core-course-list-item {
     }
 
     ion-avatar {
-       --border-radius: var(--avatar-radius);
+        --border-radius: var(--avatar-radius);
         width: var(--avatar-size);
         height: var(--avatar-size);
         img {
@@ -129,7 +128,12 @@ ion-card.core-course-list-item {
     }
 
     .core-course-thumb {
-        @include margin(var(--avatar-margin), var(--avatar-margin), var(--avatar-margin), null);
+        @include margin(
+            var(--avatar-margin),
+            var(--avatar-margin),
+            var(--avatar-margin),
+            null
+        );
     }
 
     .core-course-maininfo {
@@ -144,7 +148,7 @@ ion-card.core-course-list-item {
 }
 
 // Fill geopaterns
-.core-course-thumb img[src$=".svg"] {
+.core-course-thumb img[src$='.svg'] {
     min-width: 100%;
 }
 
@@ -157,7 +161,9 @@ ion-card.core-course-list-card {
         height: 100%;
     }
 
-    height: calc(100% - var(--card-vertical-margin) - var(--card-vertical-margin));
+    height: calc(
+        100% - var(--card-vertical-margin) - var(--card-vertical-margin)
+    );
     margin-top: var(--card-vertical-margin);
     margin-bottom: var(--card-vertical-margin);
 
@@ -214,7 +220,7 @@ ion-card.core-course-list-card {
             align-items: self-start;
         }
 
-        > ion-label{
+        > ion-label {
             margin: 16px 0;
 
             display: flex;

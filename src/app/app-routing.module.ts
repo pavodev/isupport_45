@@ -24,6 +24,9 @@ import {
     UrlSegmentGroup,
 } from '@angular/router';
 
+import { QuestionnairePage } from './questionnaire/questionnaire.page';
+import { TranslateModule } from '@ngx-translate/core';
+
 const modulesRoutes: WeakMap<InjectionToken<unknown>, ModuleRoutes> = new WeakMap();
 
 /**
@@ -219,16 +222,26 @@ export function resolveModuleRoutes(injector: Injector, token: InjectionToken<Mo
 
 export const APP_ROUTES = new InjectionToken('APP_ROUTES');
 
+const routes: Routes = [
+    {
+        path: 'questionnaire',
+        component: QuestionnairePage,
+    },
+];
+
 /**
  * Module used to register routes at the root of the application.
  */
 @NgModule({
     imports: [
         RouterModule.forRoot([]),
+        TranslateModule,
+        RouterModule.forChild(routes),
     ],
     providers: [
         { provide: ROUTES, multi: true, useFactory: buildAppRoutes, deps: [Injector] },
     ],
+    exports: [RouterModule, TranslateModule],
 })
 export class AppRoutingModule {
 

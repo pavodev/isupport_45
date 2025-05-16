@@ -1,0 +1,75 @@
+<!-- Shown when the device goes offline -->
+<div class="w-100 block_isupportsurvey_content" *ngIf="!isOnline">
+    <div class="isupportsurvey_introtext">
+        <p>{{ 'addon.block_survey.surveyconnect' | translate }}</p>
+    </div>
+</div>
+
+<!-- Shown whe the Survey hasn't been submitted yet -->
+<div class="w-100 block_isupportsurvey_content" *ngIf="!isSurveyDone && isOnline">
+    <div class="isupportsurvey_introtext">
+        <p [innerHtml]="introductionText"></p>
+    </div>
+    <div class="isupportsurvey_buttontry">
+        <button block="" ion-button="" class="disable-hover item-button button questionnaire__take" ng-reflect-block=""
+            (click)="openQuestionnaire()">
+            <span class="button-inner">{{ 'addon.block_survey.surveypartecipatetext' | translate }}</span>
+            <div class="button-effect"></div>
+        </button>
+    </div>
+</div>
+
+<!-- Shown whe the Survey has already been submitted -->
+<div class="block_isupportsurvey_content" *ngIf="isSurveyDone">
+    <div class="w-100 no-overflow isupportsurvey_done">
+        <div class="isupportsurvey_introtext" *ngIf="isOnline">
+            <p [innerHtml]="surveyDoneText"></p>
+        </div>
+        <div class="isupportsurvey_buttontry" *ngIf="isOnline">
+            <ion-button block="" class="disable-hover item-button button questionnaire__take button" ng-reflect-block=""
+                (click)="openQuestionnaire()">
+                <span class="button-inner">{{ 'addon.block_survey.surveypartecipateagaintext' | translate
+                    }}</span>
+                <div class="button-effect"></div>
+            </ion-button>
+        </div>
+        <div class="timeline" *ngIf="timeline?.length > 0">
+            <div style="display: flex; flex-direction: row">
+                <div>
+                    <h2 class="timeline__title">
+                        {{ 'addon.block_survey.timelineintroductiontext' | translate }}
+                    </h2>
+                </div>
+                <!-- <div style="width: 30px; text-align: end">
+                    <button class="button-rotate" (click)="refreshTimeline()">
+                        <ion-icon name="sync"></ion-icon>
+                    </button>
+                </div> -->
+            </div>
+            <div class="box">
+                <div class="container">
+                    <!-- <div class="lines">
+                        <div *ngFor="let course of timeline">
+                            <div class="dot"></div>
+                            <div class="line"></div>
+                        </div>
+                    </div> -->
+                    <div class="cards">
+                        <div class="card__course" style="position: relative;" *ngFor="let course of timeline"
+                            (click)="courseClicked(course)">
+                            <div class="card__course--dot" style="position: absolute"></div>
+                            <div class="card__course--line" style="position: absolute"></div>
+                            <img [src]="course.courseImage" core-external-content alt="" />
+                            <div class="card__course--text">
+                                <p class="card__course--category category-{{course.category_id}}">
+                                    {{course.categoryname}}
+                                </p>
+                                <p class="card__course--title">{{course.fullname}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

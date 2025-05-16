@@ -9,6 +9,9 @@
     </ion-refresher>
 
     <core-loading [hideUntil]="loaded">
+        <!-- <ion-item> -->
+        <addon-block-survey title="Survey" block="" contextLevel="course" instanceId="" />
+        <!-- </ion-item> -->
         <ion-list class="list-item-limited-width" *ngIf="hasMainBlocks">
             <ng-container *ngFor="let block of blocks">
                 <core-block *ngIf="block.visible" [block]="block" contextLevel="user" [instanceId]="userId" />

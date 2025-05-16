@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'core.back' | translate"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <h1>{{ 'surveyname' | translate }}</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="container" *ngIf="questions.length > 0">
+    <div id="question-{{question.id}}" [attr.data-question-id]="question.id" question class="question"
+      *ngFor="let question of questions; let i = index">
+      <div>
+        <b>{{ question.text }}</b>
+      </div>
+      <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 options-container">
+        <label class="options" *ngFor="let answer of question.answers">{{answer.text}}<input type="radio" name="answer-for-{{question.id}}"
+            [attr.data-answer-id]="answer.id" (change)="onInputChange()" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="submit" (click)="renderAnsweredMessage()">
+      <ion-button block="" class="disable-hover item-button button questionnaire__take button" ng-reflect-block=""
+        [attr.disabled]="(isOnline && answeredAll) ? null : ''" (click)="submit()">
+        <span class="button-inner">{{ 'surveysubmitbutton' | translate }}</span>
+        <div class="button-effect"></div>
+      </ion-button>
+      <!-- <button type="submit" class="button button-finish" >
+        {{ 'surveysubmitbutton' | translate }}
+      </button> -->
+    </div>
+    <div *ngIf="!isOnline">
+      <div class="isupportsurvey_introtext">
+        <p>{{ 'surveyconnect' | translate }}</p>
+      </div>
+    </div>
+    <div *ngIf="answeredMessage">
+      <div class="isupportsurvey_introtext">
+        <p>{{ 'surveyansweredall' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 import { CoreCourses } from '../../services/courses';
 import { CoreEventObserver, CoreEvents } from '@singletons/events';
@@ -28,6 +28,8 @@ import { CoreAnalytics, CoreAnalyticsEventType } from '@services/analytics';
 import { Translate } from '@singletons';
 import { CoreUtils } from '@services/utils/utils';
 
+import { AddonBlockSurveyComponent } from '@addons/block/survey/components/survey/survey';
+
 /**
  * Page that displays the dashboard page.
  */
@@ -38,6 +40,7 @@ import { CoreUtils } from '@services/utils/utils';
 export class CoreCoursesDashboardPage implements OnInit, OnDestroy {
 
     @ViewChildren(CoreBlockComponent) blocksComponents?: QueryList<CoreBlockComponent>;
+    @ViewChild(AddonBlockSurveyComponent) addonBlockSurveyComponent?: AddonBlockSurveyComponent;
 
     hasMainBlocks = false;
     hasSideBlocks = false;
