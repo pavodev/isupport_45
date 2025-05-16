@@ -30,7 +30,6 @@
     "zoomlevels": {
         "none": 100,
         "medium": 110
-        // "high": 120
     },
     "customurlscheme": "moodlemobile",
     "sites": [
@@ -51,7 +50,7 @@
         },
         {
             "name": "Test",
-            "url": "http://develab.lu.usi.ch/moodle/isupport45",
+            "url": "https://develab.lu.usi.ch/moodle/isupport45",
             "lang": "it"
         }
     ],

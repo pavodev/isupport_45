@@ -170,7 +170,8 @@ ion-list {
    * -------------------------------------------
    */
 
-html {
+html,
+:root {
     // iSupport colors
     --green-light: #ecf2f1;
     --green-medium: #1d958a; //ok
@@ -392,6 +393,12 @@ html {
     ion-header {
         box-shadow: var(--core-header-shadow, none);
         transition: box-shadow 0.5s;
+
+        ion-title {
+            h1 {
+                color: var(--white) !important;
+            }
+        }
 
         ion-toolbar {
             --color: var(--core-header-toolbar-color);
@@ -1368,7 +1375,6 @@ html {
             line-height: 1.5;
             background-color: var(--primary);
             color: white;
-            padding: 10px 20px !important;
             font-size: 14px !important;
             text-transform: uppercase;
             font-weight: 600;
@@ -1669,6 +1675,8 @@ html {
             }
         }
     }
+
+    /* v4.5.0 Update styles */
 }
 
 /*
