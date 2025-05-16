@@ -153,6 +153,8 @@ export class CoreCoursesDashboardPage implements OnInit, OnDestroy {
 
         promises.push(CoreCoursesDashboard.invalidateDashboardBlocks());
 
+        this.addonBlockSurveyComponent?.refreshTimeline();
+
         // Invalidate the blocks.
         this.blocksComponents?.forEach((blockComponent) => {
             promises.push(blockComponent.invalidate().catch(() => {

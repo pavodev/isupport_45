@@ -164,10 +164,12 @@ export class AddonBlockSurveyComponent
    * Component being initialized.
    */
   async ngOnInit(): Promise<void> {
-    console.log('ON INIT GETTING DATA');
-    this.timeline = JSON.parse(localStorage.getItem('timeline')!);
-    console.log("TIMELINE", JSON.parse(localStorage.getItem('timeline')!));
-    this.getData(this.userId!);
+    // Only load from localStorage if offline
+    if (!this.isOnline) {
+      this.timeline = JSON.parse(localStorage.getItem('timeline')!) || [];
+    }
+    // Always try to get fresh data
+    await this.getData(this.userId!);
   }
 
   /**
@@ -180,10 +182,12 @@ export class AddonBlockSurveyComponent
 
   refreshTimeline() {
     if(!this.isOnline){
-      this.timeline = JSON.parse(localStorage.getItem('timeline')!);
+      this.timeline = JSON.parse(localStorage.getItem('timeline')!) || [];
       return;
     }
+
     console.log('refreshing');
+
     let button = document.getElementById('button-rotate');
     if (button) {
       button.classList.remove('spin');
@@ -201,58 +205,55 @@ export class AddonBlockSurveyComponent
    * @return Returns a promise that returns survey data.
    */
    getData(userId: number): Promise<void> {
-    console.log('Getting data');
     if (!userId) {
       return Promise.resolve();
     }
 
+    // If offline, don't try to fetch from server
+    if (!this.isOnline) {
+      return Promise.resolve();
+    }
+
     return this.sitesProvider.getSite().then((site) => {
-      console.log(site);
-      return (
+      return site
+        .write('block_isupportsurvey_checksurveydone', { userid: userId })
+        .then(async (response: any) => {
+          if (response && (<any>response).length > 0) {
+            this.isSurveyDone = response[0].done;
+            this.surveyDoneText = this.nl2br(
+              response[0].surveydonetext,
+              false
+            );
+            this.introductionText = this.nl2br(
+              response[0].introductiontext,
+              false
+            );
 
-        site
-          // TODO send correct userID
-          .write('block_isupportsurvey_checksurveydone', { userid: userId })
-          .then(async (response: any) => {
-            if (response && (<any>response).length > 0) {
-              this.isSurveyDone = response[0].done;
-              this.surveyDoneText = this.nl2br(
-                response[0].surveydonetext,
-                false
-              );
-              this.introductionText = this.nl2br(
-                response[0].introductiontext,
-                false
-              );
+            this.categories = await this.coursesProvider.getCategories(
+              0,
+              false
+            );
 
-              this.categories = await this.coursesProvider.getCategories(
-                0,
-                false
-              );
+            // Clear timeline before populating
+            this.timeline = [];
 
-              this.timeline = [];
-
-              console.log('FETCHED WEBSERIVCE', response[0].timeline.length);
-
-              // Populate timeline with courses data
-              for (let i = 0; i < response[0].timeline.length; i++) {
-                await this.getCourseData(response[0].timeline[i].courseid);
-              }
-
-              console.log('GOT COURSES', this.timeline);
-
-              localStorage.setItem('timeline', JSON.stringify(this.timeline));
-              localStorage.setItem(
-                'introductionText',
-                JSON.stringify(this.introductionText)
-              );
-              localStorage.setItem(
-                'surveyDoneText',
-                JSON.stringify(this.surveyDoneText)
-              );
+            // Populate timeline with courses data
+            for (let i = 0; i < response[0].timeline.length; i++) {
+              await this.getCourseData(response[0].timeline[i].courseid);
             }
-          })
-      );
+
+            // Save to localStorage
+            localStorage.setItem('timeline', JSON.stringify(this.timeline));
+            localStorage.setItem(
+              'introductionText',
+              JSON.stringify(this.introductionText)
+            );
+            localStorage.setItem(
+              'surveyDoneText',
+              JSON.stringify(this.surveyDoneText)
+            );
+          }
+        });
     });
   }
 
@@ -263,7 +264,10 @@ export class AddonBlockSurveyComponent
    * @return Returns a promise that returns course data when resolved.
    */
   getCourseData(courseId: number): Promise<any> {
-    console.log(courseId);
+    // Check if course already exists in timeline
+    if (this.hasCourse(courseId)) {
+      return Promise.resolve();
+    }
 
     return this.courseHelper
       .getCourse(courseId)
@@ -364,13 +368,7 @@ export class AddonBlockSurveyComponent
    * @return Whether it's in the list.
    */
   protected hasCourse(courseId: number): boolean {
-    if (!this.courses) {
-      return false;
-    }
-
-    return !!this.courses.find((course: CoreCourseExtended) => {
-      return course.id == courseId;
-    });
+    return this.timeline.some((course: CoreCourseExtended) => course.id === courseId);
   }
 
   /**

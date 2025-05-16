@@ -1529,12 +1529,13 @@ html,
         .box {
             width: 100%;
             background: #fbfcfd;
-            margin-top: 50px;
+            margin-top: 0;
 
             .container {
                 width: 100%;
                 padding-left: 0;
                 padding-right: 0;
+                padding-bottom: 0;
                 display: flex;
                 justify-content: center;
                 min-width: 100%;
@@ -1560,7 +1561,7 @@ html,
 
                 .cards {
                     margin-left: 12px;
-                    transform: translateY(-50px);
+                    // transform: translateY(-50px);
 
                     .card__course {
                         width: 100%;
@@ -1577,6 +1578,10 @@ html,
                         margin-bottom: 30px;
 
                         position: relative;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
 
                         &--dot {
                             position: absolute;
