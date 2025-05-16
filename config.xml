@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="45002" id="com.moodle.moodlemobile" ios-CFBundleVersion="4.5.0.2" version="4.5.0" versionCode="45002" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Moodle</name>
-    <description>Moodle official app</description>
-    <author email="mobile@moodle.com" href="http://moodle.com">Moodle Mobile team</author>
+<widget android-versionCode="45002" id="swiss.isupport.mobileapp" ios-CFBundleVersion="4.5.0.2" version="4.5.0" versionCode="45002" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>iSupport Swiss</name>
+    <description>iSupport Swiss Official App</description>
+    <author email="elab@usi.ch" href="https://search.usi.ch/it/unita-organizzative/216/laboratorio-per-applicazioni-di-elearning">Università della Svizzera Italiana</author>
     <content src="index.html" />
     <access origin="*" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="mailto:*" />
     <access launch-external="yes" origin="geo:*" />
+    <allow-navigation href="http://localhost:8100" sessionid="f772eb3a" />
     <allow-navigation href="moodleappfs:*" />
     <allow-navigation href="cdvfile:*" />
     <allow-navigation href="content:*" />
@@ -28,7 +29,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="prerendered-icon" value="true" />
-    <preference name="AppendUserAgent" value="MoodleMobile 4.5.0 (45002)" />
+    <preference name="AppendUserAgent" value="iSupport Swiss 4.5.0 (45002)" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />

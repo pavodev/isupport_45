@@ -76,3 +76,7 @@ Thumbs.db
 
 /moodle.config.*.json
 !/moodle.config.example.json
+
+# iSupport Swiss specific
+isupport.keystore
+isupport.keystore.old
