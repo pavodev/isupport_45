@@ -1,4 +1,4 @@
-<div *ngIf="!showPackage && urlParams" class="core-h5p-placeholder">
+<!-- <div *ngIf="!showPackage && urlParams" class="core-h5p-placeholder">
     <ion-button class="core-h5p-placeholder-play-button" fill="clear" (click)="play($event)" [ariaLabel]="'core.h5p.play' | translate">
         <ion-icon name="far-circle-play" slot="icon-only" aria-hidden="true" />
     </ion-button>
@@ -7,6 +7,27 @@
         <core-download-refresh [status]="state" [enabled]="canDownload$ | async" [loading]="calculating$ | async" [canTrustDownload]="true"
             (action)="download()" />
     </div>
+</div>
+
+<core-h5p-iframe *ngIf="showPackage" [fileUrl]="urlParams!.url" [displayOptions]="displayOptions" [onlinePlayerUrl]="src" /> -->
+
+
+<div *ngIf="!showPackage && urlParams" class="core-h5p-placeholder">
+    <ion-button *ngIf="state === 'downloaded'" [id]="'h5p-play-' + componentId" class="core-h5p-placeholder-play-button" fill="clear"
+        (click)="play($event)" [attr.aria-label]="'core.h5p.play' | translate">
+        <ion-icon name="far-play-circle" slot="icon-only" aria-hidden="true" />
+    </ion-button>
+    <ion-button *ngIf="state !== 'downloaded'" [id]="'h5p-play-' + componentId"
+        class="core-h5p-placeholder-play-button custom-download-button" fill="clear" [attr.aria-label]="'core.h5p.play' | translate">
+        <core-download-refresh [id]="'h5p-download-' + componentId" class="core-h5p-download" [status]="state"
+            [enabled]="canDownload$ | async" [loading]="calculating$ | async" [canTrustDownload]="true" (action)="download()" />
+    </ion-button>
+
+    <!-- <div class="core-h5p-placeholder-download-container">
+        <core-download-refresh [id]="'h5p-download-' + componentId" class="core-h5p-download" [status]="state"
+            [enabled]="canDownload$ | async" [loading]="calculating$ | async" [canTrustDownload]="true" (action)="download()">
+        </core-download-refresh>
+    </div> -->
 </div>
 
 <core-h5p-iframe *ngIf="showPackage" [fileUrl]="urlParams!.url" [displayOptions]="displayOptions" [onlinePlayerUrl]="src" />

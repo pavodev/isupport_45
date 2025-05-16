@@ -287,6 +287,13 @@ export class CoreMainMenuUserMenuComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Opens the account deletion page
+     */
+    openDeletionPage(): void {
+        window.open(this.siteUrl + '/admin/tool/dataprivacy/createdatarequest.php?type=2', '_system', 'location=yes');
+    }
+
+    /**
      * @inheritdoc
      */
     ngOnDestroy(): void {

@@ -50,6 +50,9 @@ import { CoreModals } from '@services/modals';
 import { CoreQRScan } from '@services/qrscan';
 import { CoreLoadings } from '@services/loadings';
 
+import { CoreLangProvider } from '@services/lang';
+import { CoreEvents } from '@singletons/events';
+
 /**
  * Site (url) chooser when adding a new site.
  */
@@ -76,7 +79,7 @@ export class CoreLoginSitePage implements OnInit {
     enteredSiteUrl?: CoreLoginSiteInfoExtended;
     siteFinderSettings!: CoreLoginSiteFinderSettings;
 
-    constructor(protected formBuilder: FormBuilder) {}
+    constructor(protected formBuilder: FormBuilder, protected langProvider: CoreLangProvider) {}
 
     /**
      * @inheritdoc
@@ -123,6 +126,22 @@ export class CoreLoginSitePage implements OnInit {
         this.siteForm = this.formBuilder.group({
             siteUrl: [url, this.moodleUrlValidator()],
         });
+
+        if(url){
+            if (url.includes('it.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('it').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'it');
+                });
+            } else if (url.includes('de.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('de').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'de');
+                });
+            } else if (url.includes('fr.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('fr').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'fr');
+                });
+            }
+        }
 
         this.searchFunction = CoreUtils.debounce(async (search: string) => {
             search = search.trim();

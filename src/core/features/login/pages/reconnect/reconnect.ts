@@ -35,6 +35,8 @@ import { ALWAYS_SHOW_LOGIN_FORM_CHANGED, FORGOTTEN_PASSWORD_FEATURE_NAME } from 
 import { CoreKeyboard } from '@singletons/keyboard';
 import { CoreLoadings } from '@services/loadings';
 
+import { CoreLangProvider } from '@services/lang';
+
 /**
  * Page to enter the user password to reconnect to a site.
  */
@@ -75,6 +77,7 @@ export class CoreLoginReconnectPage implements OnInit, OnDestroy {
 
     constructor(
         protected fb: FormBuilder,
+        protected langProvider: CoreLangProvider,
     ) {
         const currentSite = CoreSites.getCurrentSite();
 
@@ -110,6 +113,20 @@ export class CoreLoginReconnectPage implements OnInit, OnDestroy {
 
             if (!this.site.infos) {
                 throw new CoreError('Invalid site');
+            }
+
+            if (this.site.siteUrl.includes('it.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('it').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'it');
+                });
+            } else if (this.site.siteUrl.includes('de.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('de').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'de');
+                });
+            } else if (this.site.siteUrl.includes('fr.isupport.swiss')) {
+                this.langProvider.changeCurrentLanguage('fr').finally(() => {
+                    CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'fr');
+                });
             }
 
             this.siteInfo = {

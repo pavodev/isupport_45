@@ -42,6 +42,7 @@ import { CoreCustomURLSchemes } from '@services/urlschemes';
 import { CoreSiteError } from '@classes/errors/siteerror';
 import { CoreKeyboard } from '@singletons/keyboard';
 import { CoreLoadings } from '@services/loadings';
+import { CoreLangProvider } from '@services/lang';
 
 /**
  * Page to enter the user credentials.
@@ -84,6 +85,7 @@ export class CoreLoginCredentialsPage implements OnInit, OnDestroy {
 
     constructor(
         protected fb: FormBuilder,
+        protected langProvider: CoreLangProvider,
     ) {
         // Listen to LOGIN event to determine if login was successful, since the login can be done using QR, SSO, etc.
         this.loginObserver = CoreEvents.on(CoreEvents.LOGIN, ({ siteId }) => {
@@ -121,6 +123,20 @@ export class CoreLoginCredentialsPage implements OnInit, OnDestroy {
         });
 
         await this.checkSite();
+
+        if (this.site.siteUrl.includes('it.isupport.swiss')) {
+            this.langProvider.changeCurrentLanguage('it').finally(() => {
+                CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'it');
+            });
+        } else if (this.site.siteUrl.includes('de.isupport.swiss')) {
+            this.langProvider.changeCurrentLanguage('de').finally(() => {
+                CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'de');
+            });
+        } else if (this.site.siteUrl.includes('fr.isupport.swiss')) {
+            this.langProvider.changeCurrentLanguage('fr').finally(() => {
+                CoreEvents.trigger(CoreEvents.LANGUAGE_CHANGED, 'fr');
+            });
+        }
 
         if (this.isBrowserSSO && CoreLoginHelper.shouldSkipCredentialsScreenOnSSO()) {
             const launchedWithTokenURL = await CoreCustomURLSchemes.appLaunchedWithTokenURL();
