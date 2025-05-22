@@ -702,9 +702,24 @@ html,
         }
     }
 
-    .core-h5p-placeholder-play-button.custom-download-button {
-        margin: 0;
-        padding: 0;
+    button {
+        padding: 5px 10px;
+    }
+
+    .custom-download-button {
+        button {
+            font-size: 25px;
+        }
+    }
+
+    .core-h5p-placeholder-play-button {
+        font-size: 25px;
+        min-height: 55px;
+
+        &.custom-download-button {
+            margin: 0;
+            padding: 0;
+        }
     }
 
     ion-button.button-outline {
@@ -950,6 +965,10 @@ html,
         }
     }
 
+    .activity-title {
+        margin-inline-end: 0 !important;
+    }
+
     page-core-course-contents {
         core-format-text ul,
         core-format-text ol {
@@ -961,6 +980,50 @@ html,
                 padding-inline-end: 0 !important;
                 padding-inline-start: 0 !important;
             }
+        }
+
+        core-course-section {
+            &:first-child:not(:only-child) {
+                display: none;
+            }
+
+            ion-accordion {
+                border: none;
+                margin: 0;
+            }
+
+            ion-item-divider.item,
+            ion-item.item.divider {
+                --inner-border-width: 0;
+                --border-width: 0;
+                border-bottom-width: 0;
+            }
+
+            core-course-module {
+                ion-label {
+                    margin-inline-end: 0;
+                }
+            }
+        }
+
+        .activity-title {
+            margin-inline-end: 0;
+        }
+
+        .activity-main {
+            overflow-x: auto;
+
+            .activity-title {
+                margin-inline-end: 0;
+            }
+        }
+
+        .button-inner {
+            font-size: 25px !important;
+        }
+
+        ion-button.button.button-has-icon-only {
+            font-size: 25px !important;
         }
 
         section:first-child:not(:only-child) {
@@ -1379,6 +1442,7 @@ html,
             text-transform: uppercase;
             font-weight: 600;
             border-radius: 5px;
+            padding: 5px 10px;
 
             &:focus {
                 border-radius: 5px;

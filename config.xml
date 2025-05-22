@@ -507,4 +507,6 @@
             </array>
         </config-file>
     </platform>
+    <allow-navigation href="http://localhost:8100" sessionid="f772eb3a" />
+    <allow-navigation href="http://10.0.2.2:8100" sessionid="4701c12f" />
 </widget>

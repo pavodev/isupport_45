@@ -166,19 +166,20 @@ export class AddonBlockSurveyComponent
   async ngOnInit(): Promise<void> {
     // Only load from localStorage if offline
     if (!this.isOnline) {
-      this.timeline = JSON.parse(localStorage.getItem('timeline')!) || [];
+        this.timeline = JSON.parse(localStorage.getItem('timeline')!) || [];
+        console.log('ON INIT, DEVICE OFFLINE... Getting timeline from local storage...', this.timeline);
     }
     // Always try to get fresh data
     await this.getData(this.userId!);
   }
 
-  /**
-   * Detect changes on input properties.
-   */
-  ngOnChanges(changes: { [name: string]: SimpleChange }): void {
-    console.log('Changed!')
-    this.getData(this.userId!);
-  }
+//   /**
+//    * Detect changes on input properties.
+//    */
+//   ngOnChanges(changes: { [name: string]: SimpleChange }): void {
+//     console.log('Changed!')
+//     this.getData(this.userId!);
+//   }
 
   refreshTimeline() {
     if(!this.isOnline){
@@ -211,14 +212,20 @@ export class AddonBlockSurveyComponent
 
     // If offline, don't try to fetch from server
     if (!this.isOnline) {
+        console.log('DEVICE OFFLINE! No need to fetch the timeline...');
       return Promise.resolve();
     }
+
+    // Clear timeline at the start of getData
+    this.timeline = [];
 
     return this.sitesProvider.getSite().then((site) => {
       return site
         .write('block_isupportsurvey_checksurveydone', { userid: userId })
         .then(async (response: any) => {
           if (response && (<any>response).length > 0) {
+            console.log('WEBSERVICE RESPONSE!', response);
+
             this.isSurveyDone = response[0].done;
             this.surveyDoneText = this.nl2br(
               response[0].surveydonetext,
@@ -234,13 +241,18 @@ export class AddonBlockSurveyComponent
               false
             );
 
-            // Clear timeline before populating
-            this.timeline = [];
+            console.log('FETCHING TIMELINE...', this.timeline);
 
             // Populate timeline with courses data
             for (let i = 0; i < response[0].timeline.length; i++) {
-              await this.getCourseData(response[0].timeline[i].courseid);
+              const courseId = response[0].timeline[i].courseid;
+              // Only get course data if it's not already in timeline
+              if (!this.hasCourse(courseId)) {
+                await this.getCourseData(courseId);
+              }
             }
+
+            console.log('TIMELINE & COURSES FETCHED!', this.timeline);
 
             // Save to localStorage
             localStorage.setItem('timeline', JSON.stringify(this.timeline));

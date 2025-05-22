@@ -15,7 +15,7 @@
 <div *ngIf="!showPackage && urlParams" class="core-h5p-placeholder">
     <ion-button *ngIf="state === 'downloaded'" [id]="'h5p-play-' + componentId" class="core-h5p-placeholder-play-button" fill="clear"
         (click)="play($event)" [attr.aria-label]="'core.h5p.play' | translate">
-        <ion-icon name="far-play-circle" slot="icon-only" aria-hidden="true" />
+        <ion-icon name="far-circle-play" slot="icon-only" aria-hidden="true" />
     </ion-button>
     <ion-button *ngIf="state !== 'downloaded'" [id]="'h5p-play-' + componentId"
         class="core-h5p-placeholder-play-button custom-download-button" fill="clear" [attr.aria-label]="'core.h5p.play' | translate">
