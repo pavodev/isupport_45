@@ -712,9 +712,34 @@ html,
         }
     }
 
+    .core-h5p-placeholder .core-h5p-placeholder-play-button {
+        min-height: 55px !important;
+    }
+
     .core-h5p-placeholder-play-button {
         font-size: 25px;
-        min-height: 55px;
+        min-height: 55px !important;
+
+        &:part(.button-native) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &:part(span) {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            span {
+                padding: 10px;
+            }
+        }
 
         &.custom-download-button {
             margin: 0;
@@ -1024,6 +1049,16 @@ html,
 
         ion-button.button.button-has-icon-only {
             font-size: 25px !important;
+
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    padding: 10px;
+                }
+            }
         }
 
         section:first-child:not(:only-child) {

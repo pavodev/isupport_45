@@ -6,14 +6,16 @@
         position: relative;
         width: 100%;
         height: 230px;
-        background: url('/assets/img/icons/h5p.svg') center top 25px / 100px auto no-repeat var(--core-h5p-placeholder-bg-color);
+        background: url('/assets/img/icons/h5p.svg') center top 25px / 100px
+            auto no-repeat var(--core-h5p-placeholder-bg-color);
         color: var(--core-h5p-placeholder-text-color);
 
-        .icon:not([color="success"]) {
+        .icon:not([color='success']) {
             color: var(--core-h5p-placeholder-text-color);
         }
 
-        .core-h5p-placeholder-play-button, .core-h5p-placeholder-spinner {
+        .core-h5p-placeholder-play-button,
+        .core-h5p-placeholder-spinner {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -22,7 +24,7 @@
 
         .core-h5p-placeholder-play-button {
             font-size: #{dynamic-font(30px)};
-            min-height: 50px;
+            min-height: 55px;
         }
 
         .core-h5p-placeholder-download-container {
@@ -37,7 +39,7 @@
             core-download-refresh > ion-icon {
                 margin: 0.4rem 0.2rem;
                 padding: 0 0.5em;
-                line-height: .67;
+                line-height: 0.67;
             }
         }
 
