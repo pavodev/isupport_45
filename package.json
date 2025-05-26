@@ -78,7 +78,6 @@
         "@moodlehq/cordova-plugin-camera": "7.0.0-moodle.1",
         "@moodlehq/cordova-plugin-file-opener": "4.0.0-moodle.1",
         "@moodlehq/cordova-plugin-file-transfer": "2.0.0-moodle.2",
-        "@moodlehq/cordova-plugin-inappbrowser": "5.0.0-moodle.3",
         "@moodlehq/cordova-plugin-intent": "2.2.0-moodle.3",
         "@moodlehq/cordova-plugin-ionic-webview": "5.0.0-moodle.5",
         "@moodlehq/cordova-plugin-qrscanner": "3.0.1-moodle.5",
@@ -145,6 +144,7 @@
         "@ionic/angular-toolkit": "11.0.1",
         "@ionic/cli": "7.2.0",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
+        "@moodlehq/cordova-plugin-inappbrowser": "^6.0.0-moodle.1",
         "@types/faker": "5.5.9",
         "@types/jest": "26.0.24",
         "@types/node": "18.19.53",
@@ -199,7 +199,6 @@
             },
             "@moodlehq/cordova-plugin-file-opener": {},
             "@moodlehq/cordova-plugin-file-transfer": {},
-            "@moodlehq/cordova-plugin-inappbrowser": {},
             "@moodlehq/cordova-plugin-intent": {},
             "@moodlehq/cordova-plugin-ionic-webview": {},
             "@moodlehq/cordova-plugin-qrscanner": {},
@@ -236,7 +235,8 @@
             "cordova-plugin-wkuserscript": {},
             "cordova-plugin-wkwebview-cookies": {},
             "cordova-sqlite-storage": {},
-            "nl.kingsquare.cordova.background-audio": {}
+            "nl.kingsquare.cordova.background-audio": {},
+            "@moodlehq/cordova-plugin-inappbrowser": {}
         }
     }
 }
