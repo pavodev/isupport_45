@@ -47,11 +47,6 @@
             "name": "Français",
             "url": "https://fr.isupport.swiss",
             "lang": "fr"
-        },
-        {
-            "name": "Test",
-            "url": "https://develab.lu.usi.ch/moodle/isupport45",
-            "lang": "it"
         }
     ],
     "sitename": "iSupport Swiss",

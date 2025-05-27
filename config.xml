@@ -53,15 +53,15 @@
     <preference name="GradlePluginGoogleServicesVersion" value="4.3.15" />
     <preference name="GradlePluginKotlinVersion" value="1.7.21" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#FFFFFF" />
-    <preference name="NavigationBarBackgroundColor" value="#FFFFFF" />
+    <preference name="StatusBarBackgroundColor" value="#0f666a" />
+    <preference name="NavigationBarBackgroundColor" value="#0f666a" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <platform name="android">
-        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/android-splash.xml" />
-        <preference name="AndroidWindowSplashScreenBackground" value="#FFFFFF" />
-        <preference name="AndroidWindowSplashScreenIconBackgroundColor" value="#FFFFFF" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/icon-foreground.png" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#0f666a" />
+        <preference name="AndroidWindowSplashScreenIconBackgroundColor" value="#0f666a" />
         <resource-file src="google-services.json" target="app/google-services.json" />
         <resource-file src="resources/android/icon/drawable-ldpi-smallicon.png" target="app/src/main/res/mipmap-ldpi/smallicon.png" />
         <resource-file src="resources/android/icon/drawable-mdpi-smallicon.png" target="app/src/main/res/mipmap-mdpi/smallicon.png" />
