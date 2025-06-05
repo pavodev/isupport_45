@@ -105,7 +105,6 @@
         "cordova-plugin-geolocation": "5.0.0",
         "cordova-plugin-ionic-keyboard": "2.2.0",
         "cordova-plugin-local-notification": "1.0.0",
-        "cordova-plugin-media-capture": "5.0.0",
         "cordova-plugin-network-information": "3.0.0",
         "cordova-plugin-prevent-override": "1.0.1",
         "cordova-plugin-screen-orientation": "3.0.4",
@@ -145,6 +144,7 @@
         "@ionic/cli": "7.2.0",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
         "@moodlehq/cordova-plugin-inappbrowser": "^6.0.0-moodle.1",
+        "@moodlehq/cordova-plugin-media-capture": "^5.0.0-moodle.1",
         "@types/faker": "5.5.9",
         "@types/jest": "26.0.24",
         "@types/node": "18.19.53",
@@ -227,7 +227,6 @@
             "cordova-plugin-local-notification": {
                 "ANDROID_SUPPORT_V4_VERSION": "26.+"
             },
-            "cordova-plugin-media-capture": {},
             "cordova-plugin-moodleapp": {},
             "cordova-plugin-network-information": {},
             "cordova-plugin-prevent-override": {},
@@ -236,7 +235,8 @@
             "cordova-plugin-wkwebview-cookies": {},
             "cordova-sqlite-storage": {},
             "nl.kingsquare.cordova.background-audio": {},
-            "@moodlehq/cordova-plugin-inappbrowser": {}
+            "@moodlehq/cordova-plugin-inappbrowser": {},
+            "@moodlehq/cordova-plugin-media-capture": {}
         }
     }
 }
