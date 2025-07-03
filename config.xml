@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="45003" id="swiss.isupport.mobileapp" ios-CFBundleVersion="4.5.0.3" version="4.5.0" versionCode="45003" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="450003" id="swiss.isupport.mobileapp" ios-CFBundleVersion="4.5.0.3" version="4.5.0" versionCode="450003" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>iSupport Swiss</name>
     <description>iSupport Swiss Official App</description>
     <author email="elab@usi.ch" href="https://search.usi.ch/it/unita-organizzative/216/laboratorio-per-applicazioni-di-elearning">Università della Svizzera Italiana</author>
@@ -29,7 +29,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="prerendered-icon" value="true" />
-    <preference name="AppendUserAgent" value="iSupport Swiss 4.5.0 (45003)" />
+    <preference name="AppendUserAgent" value="iSupport Swiss 4.5.0 (450003)" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
